@@ -1,0 +1,107 @@
+{% extends "layout.html" %}
+{% block body %}
+    <script type=text/javascript>
+        $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
+    <script>
+        $(function() {
+            $('a#left').bind('click', function() {
+                $.getJSON($SCRIPT_ROOT + '/left', {
+                }, function(data) {
+                    $("#result").text(data);
+                });
+                return false;
+            });
+        });
+        $(function() {
+            $('a#right').bind('click', function() {
+                $.getJSON($SCRIPT_ROOT + '/right', {
+                }, function(data) {
+                    $("#result").text(data);
+                });
+                return false;
+            });
+        });
+        $(function() {
+            $('a#frwrd').bind('click', function() {
+                $.getJSON($SCRIPT_ROOT + '/frwrd', {
+                }, function(data) {
+                    $("#result").text(data);
+                });
+                return false;
+            });
+        });
+        $(function() {
+            $('a#back').bind('click', function() {
+                $.getJSON($SCRIPT_ROOT + '/back', {
+                }, function(data) {
+                    $("#result").text(data);
+                });
+                return false;
+            });
+        });
+        $(function() {
+            $('a#accl').bind('click', function() {
+                $.getJSON($SCRIPT_ROOT + '/accl', {
+                }, function(data) {
+                    $("#result").text(data);
+                });
+                return false;
+            });
+        });
+        $(function() {
+            $('a#decel').bind('click', function() {
+                $.getJSON($SCRIPT_ROOT + '/decel', {
+                }, function(data) {
+                    $("#result").text(data);
+                });
+                return false;
+            });
+        });
+    </script>
+    <div class="padding-top control">
+        <img id="bg" class="img-thumbnail" style="width:75%" src="{{ url_for('video_feed') }}">
+        <h4 class="action">Robot is: <span id=result>stationary</span></h4>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="row padding-bottom">
+                <a class="control" id="frwrd">
+                    <i class="fa fa-arrow-up fa-4x"></i>
+                </a>
+            </div>
+            <div class="row">
+                <a class="control-side" id="left">
+                    <i class="fa fa-arrow-left fa-4x"></i>
+                </a>
+                <a class="control-side" id="right">
+                    <i class="fa fa-arrow-right fa-4x"></i>
+                </a>
+            </div>
+            <div class="row padding-top">
+                <a class="control" id="back">
+                    <i class="fa fa-arrow-down fa-4x"></i>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="row">
+                <a class="control" id="accl">
+                    <i class="fa fa-angle-double-up fa-4x"></i>
+                </a>
+            </div>
+            <div class="row">
+                <a class="control" id="decel">
+                    <i class="fa fa-angle-double-down fa-4x"></i>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div id="take-picture" class="padding-top">
+                <a href="{{ url_for('recognize') }}">
+                    <i class="fa fa-camera fa-4x"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
