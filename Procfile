@@ -1,1 +1,1 @@
-web: gunicorn pioneerrecognitionweb:server
+web: gunicorn server:server
