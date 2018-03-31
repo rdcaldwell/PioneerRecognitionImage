@@ -7,7 +7,8 @@ dir = os.path.dirname(__file__)
 
 app = Flask(__name__, instance_relative_config=True)
 
-@app.route('/recognize', methods=["POST"])
+
+@app.route('/api/image/recognize', methods=["POST"])
 def recognize():
     file = request.files['image']
     file_path = os.path.join(dir, 'images/img.jpg')
