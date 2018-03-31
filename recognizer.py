@@ -4,6 +4,7 @@ import os
 
 global top_k, results, labels
 
+
 def label_image(image_path):
     global results, labels, top_k
     path = os.path.join(os.path.dirname(__file__))
@@ -31,8 +32,7 @@ def label_image(image_path):
     output_operation = graph.get_operation_by_name(output_name)
 
     with tf.Session(graph=graph) as sess:
-        results = sess.run(output_operation.outputs[0],
-                           {input_operation.outputs[0]: t})
+        results = sess.run(output_operation.outputs[0], { input_operation.outputs[0]: t })
     results = np.squeeze(results)
 
     top_k = results.argsort()[-5:][::-1]
