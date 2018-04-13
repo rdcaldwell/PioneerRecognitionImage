@@ -8,16 +8,16 @@ dir = os.path.dirname(__file__)
 app = Flask(__name__, instance_relative_config=True)
 
 
-@app.route('/api/image/recognize', methods=["POST"])
+@app.route('/api/image/recognize', methods=['POST'])
 def recognize():
     file = request.files['image']
-    file_path = os.path.join(dir, 'images/img.jpg')
+    file_path = os.path.join(dir, 'static', 'img.jpg')
     file.save(file_path)
     recognizer.label_image(file_path)
     json = {
-        "labels": recognizer.labels,
-        "results": recognizer.results.tolist(),
-        "top_k": recognizer.top_k.tolist()
+        'labels': recognizer.labels,
+        'results': recognizer.results.tolist(),
+        'top_k': recognizer.top_k.tolist()
     }
     return jsonify(json)
 
